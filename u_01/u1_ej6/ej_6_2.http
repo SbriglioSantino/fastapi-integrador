@@ -1,0 +1,33 @@
+### ===============================
+### /items/{item_id}  (Path + Validación Numérica)
+### ===============================
+
+### ✅ OK: item_id válido (1..1000) + q requerido
+GET http://127.0.0.1:8000/items/10?q=hola
+Accept: application/json
+
+
+### ✅ OK: límite superior permitido (1000)
+GET http://127.0.0.1:8000/items/1000?q=test
+Accept: application/json
+
+
+### ❌ 422: falta q (q es requerido)
+GET http://127.0.0.1:8000/items/10
+Accept: application/json
+
+
+### ❌ 422: item_id debe ser > 0 (gt=0)
+GET http://127.0.0.1:8000/items/0?q=hola
+Accept: application/json
+
+
+### ❌ 422: item_id debe ser <= 1000 (le=1000)
+GET http://127.0.0.1:8000/items/1001?q=hola
+Accept: application/json
+
+
+### ❌ 422: item_id no es número (int)
+GET http://127.0.0.1:8000/items/abc?q=hola
+Accept: application/json
+

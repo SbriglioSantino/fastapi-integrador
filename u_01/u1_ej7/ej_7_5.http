@@ -1,0 +1,16 @@
+@base = http://127.0.0.1:8000
+
+###
+# ✅ Caso OK (200): item_id existe
+GET {{base}}/items/foo
+Accept: application/json
+
+###
+# ❌ Caso error (404): item_id NO existe → HTTPException
+GET {{base}}/items/bar
+Accept: application/json
+
+###
+# ❌ Otro inexistente (404)
+GET {{base}}/items/xyz
+Accept: application/json

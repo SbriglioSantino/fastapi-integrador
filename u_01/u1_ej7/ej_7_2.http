@@ -1,0 +1,33 @@
+@base = http://127.0.0.1:8000
+
+###
+# ✅ POST /items/  (response_model=Item)
+POST {{base}}/items/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "description": null,
+  "price": 32.0,
+  "tax": null,
+  "tags": []
+}
+
+###
+# ✅ POST /items/  (solo campos mínimos: name + price)
+POST {{base}}/items/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Portal Gun",
+  "price": 42.0
+}
+
+###
+# ✅ GET /items/  (response_model=list[Item])
+GET {{base}}/items/
+Accept: application/json
+
+
+

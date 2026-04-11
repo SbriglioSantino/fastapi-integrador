@@ -1,0 +1,57 @@
+@base = http://127.0.0.1:8000
+
+###
+# ✅ POST /users/ (201 Created)
+# response_model=UserPublic → la respuesta NO incluye "password"
+POST {{base}}/users/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username": "carlos",
+  "email": "carlos@example.com",
+  "full_name": "Carlos Martínez",
+  "password": "Secreta123!"
+}
+
+###
+# ✅ POST /users/ (sin full_name)
+POST {{base}}/users/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username": "ana",
+  "email": "ana@example.com",
+  "password": "ClaveSegura!2026"
+}
+
+###
+# ❌ 422 - email inválido (EmailStr)
+POST {{base}}/users/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username": "pepe",
+  "email": "no-es-email",
+  "full_name": "Pepe",
+  "password": "123456"
+}
+
+###
+# ❌ 422 - falta password (requerido en UserCreate)
+POST {{base}}/users/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username": "maria",
+  "email": "maria@example.com",
+  "full_name": "María López"
+}
+
+###
+# ❌ 405 - método incorrecto (si probás GET /users/ sin definirlo)
+GET {{base}}/users/
+Accept: application/json

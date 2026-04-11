@@ -1,0 +1,54 @@
+### ===============================
+### /items/  (Query Param Models)
+### ===============================
+
+### ✅ OK: sin query (usa defaults)
+### - limit=100, offset=0, order_by="created_at", tags=[]
+GET http://127.0.0.1:8000/items/
+Accept: application/json
+
+
+### ✅ OK: limit y offset válidos
+GET http://127.0.0.1:8000/items/?limit=20&offset=40
+Accept: application/json
+
+
+### ✅ OK: order_by válido (Literal)
+GET http://127.0.0.1:8000/items/?order_by=updated_at
+Accept: application/json
+
+
+### ✅ OK: tags (lista) repetido en query
+### Nota: se envía como tags=a&tags=b
+GET http://127.0.0.1:8000/items/?tags=fastapi&tags=react
+Accept: application/json
+
+
+### ✅ OK: combinación completa
+GET http://127.0.0.1:8000/items/?limit=10&offset=0&order_by=created_at&tags=api&tags=docs
+Accept: application/json
+
+
+### ❌ 422: limit debe ser > 0 (gt=0)
+GET http://127.0.0.1:8000/items/?limit=0
+Accept: application/json
+
+
+### ❌ 422: limit debe ser <= 100 (le=100)
+GET http://127.0.0.1:8000/items/?limit=101
+Accept: application/json
+
+
+### ❌ 422: offset debe ser >= 0 (ge=0)
+GET http://127.0.0.1:8000/items/?offset=-1
+Accept: application/json
+
+
+### ❌ 422: order_by inválido (solo "created_at" o "updated_at")
+GET http://127.0.0.1:8000/items/?order_by=name
+Accept: application/json
+
+
+### ❌ 422: limit debe ser int (tipo incorrecto)
+GET http://127.0.0.1:8000/items/?limit=abc
+Accept: application/json

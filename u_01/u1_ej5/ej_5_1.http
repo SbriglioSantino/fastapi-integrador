@@ -1,0 +1,10 @@
+### Solicitud POST con Request Body 
+POST http://127.0.0.1:8000/items/
+Content-Type: application/json
+
+{
+    "name": "Cafetera",
+    "description": "Italiana",
+    "tax": 10.00
+}
+

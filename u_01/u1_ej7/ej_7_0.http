@@ -1,0 +1,38 @@
+### Configuración del Host
+@host = http://127.0.0.1:8000
+
+# ---------------------------------------------------------
+# CASO 0: Sin reglas (El peligro)
+# ---------------------------------------------------------
+# ESPERADO: Verás datos sensibles ("password_admin", "info_interna").
+# POR QUÉ: FastAPI no filtró nada porque no le dijimos qué devolver.
+GET {{host}}/caso-0/sin-reglas
+
+###
+
+# ---------------------------------------------------------
+# CASO 1: Éxito (Type Hint)
+# ---------------------------------------------------------
+# ESPERADO: Un JSON limpio con "name" y "price".
+# POR QUÉ: Los datos coinciden perfectamente con el modelo Item.
+GET {{host}}/caso-1/exito
+
+###
+
+# ---------------------------------------------------------
+# CASO 2: Error de Servidor (Type Hint Validando)
+# ---------------------------------------------------------
+# ESPERADO: Error 500 Internal Server Error.
+# POR QUÉ: El código intentó devolver datos incompletos (faltaba el precio).
+# FastAPI bloqueó la respuesta para proteger al cliente de datos rotos.
+GET {{host}}/caso-2/error-servidor
+
+###
+
+# ---------------------------------------------------------
+# CASO 3: Filtrado (response_model)
+# ---------------------------------------------------------
+# ESPERADO: Un JSON limpio SIN "password_db" ni "created_at".
+# POR QUÉ: Aunque el código envió esos datos, el 'response_model'
+# actuó como un filtro y los eliminó antes de enviarlos.
+GET {{host}}/caso-3/filtrado

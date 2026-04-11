@@ -1,0 +1,18 @@
+@base = http://127.0.0.1:8000
+
+###
+# ✅ POST /items/ (201 Created)
+# En este endpoint, "name" es un Query Param (va en la URL)
+POST {{base}}/items/?name=Plumbus
+Accept: application/json
+
+###
+# ✅ Otro ejemplo
+POST {{base}}/items/?name=Portal%20Gun
+Accept: application/json
+
+###
+# ❌ 422 Unprocessable Entity (falta el query param requerido "name")
+POST {{base}}/items/
+Accept: application/json
+

@@ -1,0 +1,9 @@
+###
+curl -X 'GET' \
+  'http://127.0.0.1:8000/items/me' \
+  -H 'accept: application/json'
+###
+curl -X 'GET' \
+  'http://127.0.0.1:8000/items/me' \
+  -H 'accept: application/json'
+

@@ -1,0 +1,88 @@
+############################################################
+### POST /items/  ✅ Crea Item (con tax) -> agrega price_with_tax
+POST http://127.0.0.1:8000/items/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Laptop",
+  "description": "Una computadora potente",
+  "price": 1200.50,
+  "tax": 120.00
+}
+
+
+
+
+############################################################
+### POST /items/  ✅ Crea Item (sin tax) -> NO agrega price_with_tax
+POST http://127.0.0.1:8000/items/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Mouse",
+  "description": "Inalámbrico",
+  "price": 25.99,
+  "tax": null
+}
+
+############################################################
+### POST /items/  ✅ Crea Item (campos mínimos) -> description y tax opcionales
+POST http://127.0.0.1:8000/items/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Teclado",
+  "price": 80.00
+}
+
+############################################################
+### POST /items/  ❌ Error típico 422 (price debería ser número)
+POST http://127.0.0.1:8000/items/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "ErrorItem",
+  "price": "ochenta"
+}
+
+############################################################
+### PUT /items/{item_id} ✅ Actualiza item (sin query q)
+PUT http://127.0.0.1:8000/items/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Laptop Pro",
+  "description": "Actualizada",
+  "price": 1500.00,
+  "tax": 150.00
+}
+
+############################################################
+### PUT /items/{item_id} ✅ Actualiza item (con query q)
+PUT http://127.0.0.1:8000/items/2?q=modo_debug
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Monitor",
+  "description": "27 pulgadas",
+  "price": 300.00,
+  "tax": 30.00
+}
+
+############################################################
+### PUT /items/{item_id} ❌ Error típico 422 (item_id debe ser int)
+PUT http://127.0.0.1:8000/items/abc?q=test
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Monitor",
+  "price": 300.00
+}
+

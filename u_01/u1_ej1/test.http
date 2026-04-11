@@ -1,0 +1,8 @@
+###Primer ejemplo
+curl -X 'GET' \
+  'http://127.0.0.1:8000/' \
+  -H 'accept: application/json'
+####
+### Probar Primer Ejemplo
+GET http://127.0.0.1:8000/
+Accept: application/json

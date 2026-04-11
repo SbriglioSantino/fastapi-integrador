@@ -1,0 +1,24 @@
+### ===============================
+### /items/  (Query + Validación String)
+### ===============================
+
+### ✅ OK: sin query (q es opcional)
+GET http://127.0.0.1:8000/items/
+Accept: application/json
+
+
+### ✅ OK: q válido (>= 3 caracteres)
+GET http://127.0.0.1:8000/items/?q=hola
+Accept: application/json
+
+
+### ❌ 422: q demasiado corto (min_length=3)
+GET http://127.0.0.1:8000/items/?q=ab
+Accept: application/json
+
+
+### ❌ 422: q demasiado largo (max_length=50)
+GET http://127.0.0.1:8000/items/?q=abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabc
+Accept: application/json
+
+
