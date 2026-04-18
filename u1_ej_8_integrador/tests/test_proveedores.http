@@ -1,0 +1,55 @@
+### 1. Listar proveedores
+GET http://127.0.0.1:8000/proveedores/
+Accept: application/json
+
+###
+
+### 2. Crear proveedor
+POST http://127.0.0.1:8000/proveedores/
+Content-Type: application/json
+
+{
+  "nombre": "Tecnología Global",
+  "email": "ventas@tecglobal.com",
+  "telefono": "2614998877",
+  "activo": true
+}
+
+###
+
+### 3. Detalle proveedor
+GET http://127.0.0.1:8000/proveedores/1
+Accept: application/json
+
+###
+
+### 4. Buscar por nombre
+GET http://127.0.0.1:8000/proveedores/?nombre=norte
+Accept: application/json
+
+###
+
+### 5. Desactivar proveedor
+PUT http://127.0.0.1:8000/proveedores/1/desactivar
+Accept: application/json
+
+###
+
+### 6. Proveedor inexistente (404)
+GET http://127.0.0.1:8000/proveedores/999
+Accept: application/json
+
+###
+
+### 7. Proveedor inválido (422)
+POST http://127.0.0.1:8000/proveedores/
+Content-Type: application/json
+
+{
+  "nombre": "AB",
+  "email": "correo-invalido",
+  "telefono": "123",
+  "activo": true
+}
+
+###
